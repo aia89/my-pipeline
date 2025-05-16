@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # my-pipeline
 =======
 # Platform-Engineering-Challenges---Pipelining
@@ -16,4 +16,4 @@ $: ./gradlew test
 BUILD SUCCESSFUL in 262ms
 3 actionable tasks: 3 up-to-date
 
->>>>>>> f4401a3eef4191a739759893279b42460bcae6da
+
