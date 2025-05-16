@@ -1,5 +1,8 @@
 # Platform-Engineering-Challenges---Pipelining
 Build and Test:
+run in cli:
+
+
 $: ./gradlew build
 
 BUILD SUCCESSFUL in 396ms
