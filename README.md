@@ -57,11 +57,11 @@ The commit from the pipeline should appear in your git history
 
 ###check the image
 
-![<img width="831" alt="Screenshot 2025-05-16 at 5 04 38 PM" src="https://github.com/user-attachments/assets/b3e7f083-3e92-41de-a380-b8e49810e04c" />]
+![img width="831" alt="Screenshot 2025-05-16 at 5 04 38 PM" src="https://github.com/user-attachments/assets/b3e7f083-3e92-41de-a380-b8e49810e04c" ]
 
 ###Run CLI
 docker run aiados/hello-world:latest
-![<img width="763" alt="Screenshot 2025-05-16 at 5 13 34 PM" src="https://github.com/user-attachments/assets/80fbebbc-81be-4635-8060-8188a492ed62" />]
+![img width="763" alt="Screenshot 2025-05-16 at 5 13 34 PM" src="https://github.com/user-attachments/assets/80fbebbc-81be-4635-8060-8188a492ed62" ]
 
 
 ###check helm
