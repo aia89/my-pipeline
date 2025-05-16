@@ -70,5 +70,3 @@ The commit from the pipeline should appear in your git history
   repository: docker.io/aiados/hello-world
   tag: latest
 
-
-
