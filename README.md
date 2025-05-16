@@ -1,16 +1,21 @@
 
 # my-pipeline
 
-Build and Test:
-###run in cli:
+Build and Test the Java 
 
+run in cli:
 
-```./gradlew build```
+```
+./gradlew build
+./gradlew clean build
+```
 
 >BUILD SUCCESSFUL in 396ms
 7 actionable tasks: 7 up-to-date
 
-``` ./gradlew test```
+``` 
+./gradlew test
+```
 
 >BUILD SUCCESSFUL in 262ms
 3 actionable tasks: 3 up-to-date
@@ -23,31 +28,42 @@ Create a Helm chart directory structure:
 mkdir -p helm-chart/templates
 ```
 
-helm-chart/templates/deployment.yaml:
 
-###Create GitHub Actions Workflow
+
+Create GitHub Actions Workflow
 Create the directory and workflow file:
 
 
-```mkdir -p .github/workflows```
+```
+mkdir -p .github/workflows
+```
 
-.github/workflows/pipeline.yml:
+.github/workflows/pipeline.yml      # add GH actions workflow here
 
-###Set Up Secrets in GitHub
-add these secrets to your GitHub repository:
 
+Build docker:
+
+```
+git:(main) docker build -t hello-world-app .
+docker images
+REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
+hello-world   latest    72b7e32a0196   6 seconds ago   402MB
+
+git:(main) docker tag hello-world yourusername/hello-world:latest
+git:(main) docker push aiados/hello-world:latest
+```
 
 ```DOCKER_HUB_USERNAME - Your Docker Hub username```
 
 ```DOCKER_HUB_TOKEN - Your Docker Hub access token ```
 
-###Test the Pipeline
+Test the Pipeline
 Commit and push your changes:
 
 Check the Actions tab in your GitHub repository to see the pipeline running.
 
-###Verify the Output
-After the pipeline runs successfully:
+Verify the Output
+After the pipeline runs successfully
 
 Check Docker Hub for your new image
 
@@ -55,18 +71,24 @@ Verify the Helm chart values.yaml was updated with the new image tag
 
 The commit from the pipeline should appear in your git history
 
-###Check the image from docker hub
+Check the image from docker hub
 
 
-###Run CLI
-```docker run aiados/hello-world:latest```
+Run CLI for Hello World running every 2 sec
+```
+docker run aiados/hello-world:latest
+```
 
 
-###Check helm
+Check helm
 
                    
-``` (base) ➜ git:(main) cat helm-chart/values.yaml | grep -A2 "image:"```
+``` 
+(base) ➜ git:(main) cat helm-chart/values.yaml | grep -A2 "image:"
+```
 > image:
   repository: docker.io/aiados/hello-world
   tag: latest
+
+
 
