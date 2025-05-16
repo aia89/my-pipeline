@@ -36,10 +36,10 @@ Create the directory and workflow file:
 ###Set Up Secrets in GitHub
 add these secrets to your GitHub repository:
 
-```
-DOCKER_HUB_USERNAME - Your Docker Hub username
 
-DOCKER_HUB_TOKEN - Your Docker Hub access token```
+```DOCKER_HUB_USERNAME - Your Docker Hub username```
+
+```DOCKER_HUB_TOKEN - Your Docker Hub access token ```
 
 ###Test the Pipeline
 Commit and push your changes:
@@ -55,22 +55,20 @@ Verify the Helm chart values.yaml was updated with the new image tag
 
 The commit from the pipeline should appear in your git history
 
-###check the image
+###Check the image from docker hub
 
-![img width="831" alt="Screenshot 2025-05-16 at 5 04 38 PM" src="https://github.com/user-attachments/assets/b3e7f083-3e92-41de-a380-b8e49810e04c" ]
 
 ###Run CLI
-docker run aiados/hello-world:latest
-![img width="763" alt="Screenshot 2025-05-16 at 5 13 34 PM" src="https://github.com/user-attachments/assets/80fbebbc-81be-4635-8060-8188a492ed62" ]
+```docker run aiados/hello-world:latest```
 
 
-###check helm
+###Check helm
 
                    
-```(base) ➜  Platform-Engineering-Challenges---Pipelining git:(main) cat helm-chart/values.yaml | grep -A2 "image:"
-image:
+``` (base) ➜ git:(main) cat helm-chart/values.yaml | grep -A2 "image:"```
+> image:
   repository: docker.io/aiados/hello-world
-  tag: latest```
+  tag: latest
 
 
 
