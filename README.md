@@ -1,1 +1,12 @@
 # Platform-Engineering-Challenges---Pipelining
+Build and Test:
+$: ./gradlew build
+
+BUILD SUCCESSFUL in 396ms
+7 actionable tasks: 7 up-to-date
+
+$: ./gradlew test
+
+BUILD SUCCESSFUL in 262ms
+3 actionable tasks: 3 up-to-date
+
