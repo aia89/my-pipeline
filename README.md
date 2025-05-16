@@ -21,7 +21,7 @@ run in cli:
 3 actionable tasks: 3 up-to-date
 
 
-###Add Helm Chart Structure
+### Add Helm Chart Structure
 Create a Helm chart directory structure:
 
 ```
@@ -53,9 +53,7 @@ git:(main) docker tag hello-world yourusername/hello-world:latest
 git:(main) docker push aiados/hello-world:latest
 ```
 
-```DOCKER_HUB_USERNAME - Your Docker Hub username```
 
-```DOCKER_HUB_TOKEN - Your Docker Hub access token ```
 
 Test the Pipeline
 Commit and push your changes:
