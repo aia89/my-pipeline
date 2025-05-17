@@ -65,27 +65,28 @@ jobs:
             "username=${{ secrets.DOCKER_HUB_USERNAME }}"
             "password=${{ secrets.DOCKER_HUB_TOKEN }}"
 
-            
+
       - name: Debug Tags Output
         run: |
             echo "All tags: ${{ steps.meta.outputs.tags }}"
             echo "First tag: $(echo "${{ steps.meta.outputs.tags }}" | cut -d ',' -f 1)"
 
+
       - name: Update Helm chart with new image tag
         run: |
-          # Get the first tag (sha format)
-          # Get the first tag safely
-            TAGS="${{ steps.meta.outputs.tags }}"
-            FIRST_TAG=$(echo "$TAGS" | cut -d ',' -f 1 | tr -d '\n' | tr -d ' ')
+          set -e  # Exit immediately on error
+          set -o pipefail  # Catch pipeline errors
+          TAGS="${{ steps.meta.outputs.tags }}"
+          FIRST_TAG=$(echo "$TAGS" | cut -d ',' -f 1 | tr -d '\n' | tr -d ' ')
 
             # Extract just the tag portion (remove registry prefix if present)
-            IMAGE_TAG="${FIRST_TAG#*:}"  # Gets everything after colon
-            IMAGE_TAG="${IMAGE_TAG##*/}"  # Gets everything after last slash
+          IMAGE_TAG="${FIRST_TAG#*:}"  # Gets everything after colon
+          IMAGE_TAG="${IMAGE_TAG##*/}"  # Gets everything after last slash
           
-          # Update Helm values
-          sed -i "s|tag:.*|tag: ${TAG#*:}|" helm-chart/values.yaml
+          # Update Helm values - FIXED TO USE IMAGE_TAG
+          sed -i "s|tag:.*|tag: ${IMAGE_TAG}|" helm-chart/values.yaml  # Changed from ${TAG#*:}
           sed -i "s|repository:.*|repository: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}|" helm-chart/values.yaml
-          
+    
           # Configure git
           git config --global aia89 "GitHub Actions"
           git config --global user.email "${{ secrets.GIT_COMMITTER_EMAIL }}"
