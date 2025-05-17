@@ -1,8 +1,12 @@
 name: Build, Test, and Deploy
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "main" ]
+
+  # Allows manual trigger in GitHub UI
+ 
 
 env:
   REGISTRY: docker.io
