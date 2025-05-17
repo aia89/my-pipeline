@@ -3,7 +3,7 @@
 
 Build and Test the Java 
 
-run in cli:
+run from cli:
 
 ```
 ./gradlew build
