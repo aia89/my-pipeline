@@ -64,6 +64,9 @@ jobs:
           secrets: |
             "username=${{ secrets.DOCKER_HUB_USERNAME }}"
             "password=${{ secrets.DOCKER_HUB_TOKEN }}"
+      - name: Pull pushed image
+        run: |
+            ocker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest || true
 
 
       - name: Debug Tags Output
@@ -78,9 +81,15 @@ jobs:
           set -o pipefail  
 
           # Get the exact image tag that was pushed
+          TAG_LIST="${{ steps.meta.outputs.tags }}"
           IMAGE_TAG=$(docker inspect ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }} --format='{{.RepoTags}}' | grep -oE 'sha-[a-f0-9]+' || echo "${GITHUB_SHA:0:7}")
 
-          
+          # Verify we got a tag
+          if [ -z "$IMAGE_TAG" ]; then
+            echo "Error: Failed to extract image tag"
+            exit 1
+          fi
+
           # Update Helm values
           sed -i "s|tag:.*|tag: ${IMAGE_TAG}|" helm-chart/values.yaml
           sed -i "s|repository:.*|repository: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}|" helm-chart/values.yaml
